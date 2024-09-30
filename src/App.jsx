@@ -1,8 +1,13 @@
+import Header from "./components/Header";
 import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from "./screens/Home";
+
 function App() {
   return (
     <>
-      <p className="text-4xl">Hello World</p>
+      <Header />
+      <Home />
     </>
   );
 }
