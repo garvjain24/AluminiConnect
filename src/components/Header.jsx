@@ -12,8 +12,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Events", "Donations", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -34,7 +36,7 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const { user, isSignedIn } = useUser();
   return (
     <AppBar position="static" sx={{ backgroundColor: "#A52A2A" }}>
       {" "}
@@ -126,9 +128,20 @@ function ResponsiveAppBar() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+              <div className="flex items-center gap-2">
+                {isSignedIn ? (
+                  <>
+                    <UserButton />
+                    <Link to="/">
+                      <Button>Submit Listing</Button>
+                    </Link>
+                  </>
+                ) : (
+                  <SignInButton mode="modal" forceRedirectUrl="/">
+                    <Button>Sign In</Button>
+                  </SignInButton>
+                )}
+              </div>
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}

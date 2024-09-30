@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, Card, CardContent } from "@mui/material";
 import Slider from "react-slick";
 import "../index.css"; // Make sure to create and import the CSS file
 import ImgMediaCard from "../components/cards";
@@ -28,7 +28,7 @@ const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 500,
+    autoplaySpeed: 5000, // Change testimonials every 5 seconds
   };
 
   return (
@@ -81,7 +81,6 @@ const Home = () => {
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              filter: "blur(8px)",
             }}
           >
             <source src="src/assets/IntroVideo.mp4" type="video/mp4" />
@@ -119,11 +118,10 @@ const Home = () => {
             >
               <Box sx={{ minWidth: 300 }}>
                 <ImgMediaCard
-                  image={"image"}
-                  title={`Event ${index + 1}`}
-                  description={"Description for event."}
+                  image={"src/assets/test.jpeg"}
+                  description={"My First workShop"}
+                  title={"WorkShop"}
                   button1Text={"Join"}
-                  button2Text={"Details"}
                   sx={{
                     backgroundColor: "#A52A2A", // Brown
                     color: "Brown",
@@ -155,7 +153,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 * index }}
             >
-              <Box
+              <Card
                 sx={{
                   p: 2,
                   textAlign: "center",
@@ -163,13 +161,15 @@ const Home = () => {
                   color: "white",
                 }}
               >
-                <Typography variant="body1" sx={{ mb: 1 }}>
-                  "{testimonial.text}"
-                </Typography>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
-                  - {testimonial.name}
-                </Typography>
-              </Box>
+                <CardContent>
+                  <Typography variant="body1" sx={{ mb: 1 }}>
+                    "{testimonial.text}"
+                  </Typography>
+                  <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                    - {testimonial.name}
+                  </Typography>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </Slider>
