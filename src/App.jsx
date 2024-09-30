@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import OngoingProjectsPage from './components/OngoingProjectsPage';
-import ProjectForm from './components/ProjectForm';
-import PaymentGateway from './components/PaymentGateway';
-import './index.css';
-
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./screens/Home";
-import Header from "./components/Header";
+import OngoingProjectsPage from "./screens/OngoingProjectsPage";
+import PaymentGateway from "./screens/PaymentGateway";
+import ProjectForm from "./screens/ProjectForm";
+import Events from "./screens/Events";
+import ResponsiveAppBar from "./components/Header";
+
 function App() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = React.useState([]);
 
   return (
     <>
-      <p className="text-4xl">Hello World</p>
+      <ResponsiveAppBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/ongoing-projects"
+          element={
+            <OngoingProjectsPage
+              projects={projects}
+              setProjects={setProjects}
+            />
+          }
+        />
+        <Route path="/payment-gateway" element={<PaymentGateway />} />
+        <Route
+          path="/project-form"
+          element={<ProjectForm setProjects={setProjects} />}
+        />
+        <Route path="/events" element={<Events />} />
+      </Routes>
     </>
   );
 }

@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Container, Typography, Box, Card, CardContent } from "@mui/material";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "../index.css"; // Make sure to create and import the CSS file
 import ImgMediaCard from "../components/cards";
 
